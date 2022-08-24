@@ -59,3 +59,21 @@ test('Handles onClick', () => {
   expect(onClick).toHaveBeenCalledTimes(1); // clicked once 
 });
 ```
+
+4. state hooks test
+
+```ts Counter.tsx // Hooks Test
+test('testing state hooks', () => {
+  render(<Counter />);
+
+  // Find by role
+  const divElement = screen.getByRole('counthook');
+
+  // Find by Tag Name (button)
+  const buttonElement = screen.getByRole((content, element) => element?.tagName.toLocaleLowerCase() === "button");
+  // brought fireEvent from TLR
+
+  fireEvent.click(buttonElement);
+  expect(divElement).toHaveTextContent("Count is 1"); // clicked once 
+});
+```
