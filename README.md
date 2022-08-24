@@ -39,3 +39,23 @@ test('renders a name', () => {
   expect(anchorElement[0]).toHaveAttribute("href", items[0].href)
 });
 ```
+
+3. Event Handler Test
+
+```ts // ButtonWrapper.tsx 
+test('Handles onClick', () => {
+
+  // Pass Onclick Handler
+  // function that is going to track how often it's called and what it's called with
+  const onClick = jest.fn();
+
+  render(<ButtonWrapper onClick={onClick} title="Button" />);
+
+  // since i gave Title to be 'Button'
+  const buttonElement = screen.getByText("Button");
+
+  // brought fireEvent from TLR
+  fireEvent.click(buttonElement);
+  expect(onClick).toHaveBeenCalledTimes(1); // clicked once 
+});
+```
